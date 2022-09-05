@@ -77,9 +77,10 @@ def create_app(test_config=None):
 
         formatted_question = [question.format() for question in questions]
         data_question = formatted_question[start:end]
+        #a = len(data_question)
 
         #Test
-        if data_question is not None:
+        if len(data_question) != 0:
 
             #Recupere categories
             categories = [categories.format() for categories in Category.query.all()]
@@ -98,6 +99,8 @@ def create_app(test_config=None):
                             "totalQuestions": len(formatted_question),
                             "categories": data,
                             "currentCategory": None})
+        else:
+            abort(404)
 
 
     """
